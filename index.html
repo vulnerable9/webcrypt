@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebCrypt</title>
+    <script src="http://bitwiseshiftleft.github.io/sjcl/sjcl.js"></script>
+    <style>
+        * {
+            font-family: monotype;
+            border-radius: 10px;
+            border: 0;
+
+        }
+
+        body {
+            background: #232634;
+            color: #c6d0f5;
+        }
+
+        textarea,
+        input {
+            width: 70%;
+            height: 10%;
+            padding: 10px;
+            margin: 3px;
+            background: #b5bfe2;
+        }
+
+        button {
+            padding: 10px;
+            margin: 3px;
+            background: #a6d189;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1>WebCrypt</h1>
+
+        <div id="main">
+            <div id="enc">
+                <label>🔐 Encrypt</label>
+                <fieldset>
+                    
+                    <textarea id="message" placeholder="Message..."></textarea>
+                    <br>
+                    <input type="password" id="psw" placeholder="Password...">
+                    <br>
+                    <button id="enc_btn" onclick="encryptdata()">Encrypt</button>
+                    <p id="encrypt"></p>
+                </fieldset>
+            </div>
+
+            <div id="dec">
+                <label>🔓 Decrypt</label>
+                <fieldset>
+                    
+                    <textarea id="message2" placeholder="Encrypted data..."></textarea>
+                    <br>
+                    <input type="password" id="psw2" placeholder="Password...">
+                    <br>
+                    <button id="dec_btn" onclick="decryptdata()">Decrypt</button>
+                    <p id="decrypt"></p>
+                </fieldset>
+            </div>
+        </div>
+    </center>
+    <script>
+        function encryptdata() {
+            encmsg = sjcl.encrypt(document.getElementById("psw").value, document.getElementById("message").value)
+            document.getElementById("encrypt").innerHTML = encmsg
+        }
+
+        function decryptdata() {
+            decmsg = sjcl.decrypt(document.getElementById("psw2").value, document.getElementById("message2").value)
+            document.getElementById("decrypt").innerHTML = decmsg
+        }
+    </script>
+
+</body>
+
+</html>
